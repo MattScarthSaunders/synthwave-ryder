@@ -1,0 +1,508 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  position: relative;
+}
+
+/* ---------------------------------------------------------- BACKGROUND UPPER ---------------------------------------------------------- */
+
+.sky {
+  height: 540px;
+  width: 1920px;
+  background: linear-gradient(0deg, hotpink, orange);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sun {
+  height: 400px;
+  width: 400px;
+  border-radius: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 440px;
+  box-shadow: 0 0 10px white, 0 0 200px 100px hotpink, 0 0 300px 150px orange;
+}
+
+.line {
+  background: white;
+  width: 100%;
+  height: 10px;
+  border-radius: 2px;
+  box-shadow: 0 0 10px white;
+}
+
+.title {
+  position: absolute;
+}
+
+h1 {
+  font-family: "Bungee Hairline", sans-serif;
+  font-size: 4rem;
+  top: 180px;
+  right: 200px;
+  text-shadow: 0 5px 10px blue;
+}
+
+h2 {
+  font-family: "Rock Salt", cursive;
+  font-size: 3rem;
+  top: 210px;
+  right: 200px;
+  color: white;
+  text-shadow: 0 0 10px purple, 0 0 20px hotpink;
+  transform: rotate(-10deg);
+}
+
+.bird {
+  font-family: "Rock Salt", cursive;
+  color: black;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  left: 0;
+  bottom: 20%;
+  animation: birds 30s linear infinite, flaps 1s linear infinite;
+}
+
+/* ---------------------------------------------------------- BACKGROUND LOWER ---------------------------------------------------------- */
+
+.grid {
+  height: 540px;
+  width: 1920px;
+  background-color: black;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 540px;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 192px;
+}
+
+.vert {
+  border: 1px solid cyan;
+  background: white;
+}
+
+.horz {
+  border: 1px solid cyan;
+  position: absolute;
+  width: 110vw;
+  animation: slide 5s ease-in infinite;
+}
+
+.shadow {
+  height: 540px;
+  width: 1920px;
+  position: absolute;
+  z-index: 2;
+  top: 540px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: inset 0 100px 100px 0 rgba(245, 40, 145, 0.28),
+    inset 0 10px 100px rgba(250, 150, 3, 0.43), inset 0 0 100px 50px black,
+    inset 0 0 200px black;
+}
+
+/* ---------------------------------------------------------- ROAD ---------------------------------------------------------- */
+
+.roadDash {
+  position: absolute;
+  width: 3vw;
+  height: 15vh;
+  border: none;
+  background: white;
+  box-shadow: inset 0 0 40px cyan, 0 0 10px cyan;
+  animation: dashSlide 5s ease-in infinite;
+  z-index: 1;
+  opacity: 0;
+  top: -5vh;
+}
+
+.road {
+  position: absolute;
+  width: 385px;
+  background: grey;
+  height: 100%;
+}
+
+.roadOL {
+  transform: skew(-30deg);
+  margin-left: -385px;
+  border-left: 5px solid white;
+  box-shadow: -50px 0 100px -50px cyan, -6px 0 4px white;
+}
+
+.roadIL {
+  margin-left: -192px;
+  transform: skew(-15deg);
+}
+
+.roadIR {
+  margin-left: 192px;
+  transform: skew(15deg);
+}
+
+.roadOR {
+  transform: skew(30deg);
+  margin-left: 384px;
+  border-right: 5px solid white;
+  box-shadow: 50px 0 100px -50px cyan, 6px 0 4px white;
+}
+
+/* ---------------------------------------------------------- CAR ---------------------------------------------------------- */
+.car {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  margin-left: 400px;
+  margin-top: 54px;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
+  animation: bob 20s infinite;
+}
+.carUpper {
+  top: 5%;
+  width: 70%;
+  height: 20%;
+  transform: perspective(50px) rotateX(30deg);
+  position: relative;
+  box-shadow: inset 0 0 100px lightblue, inset 0 10px 10px 10px hotpink,
+    -40px -60px 60px -0px silver, -120px -80px 60px -10px silver,
+    40px -60px 40px -10px silver, 80px -80px 60px -10px silver;
+  z-index: 5;
+  border-radius: 15px 15px 0 0;
+}
+
+.mirror {
+  border: 3px solid black;
+  transform: perspective(10px) rotateX(-20deg);
+  width: 15px;
+  height: 5px;
+}
+
+.mirrorL {
+  background: silver;
+  position: absolute;
+  left: -15px;
+  top: 90%;
+  z-index: 1;
+}
+
+.mirrorL::before,
+.mirrorR::before {
+  content: "";
+  width: 100%;
+  height: 3px;
+  box-shadow: inset 0 0 5px orange;
+  z-index: 3;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.mirrorL::after,
+.mirrorR::after {
+  content: "";
+  width: 100%;
+  height: 6px;
+  box-shadow: inset 0 0 5px hotpink;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.mirrorR {
+  background: silver;
+  position: absolute;
+  right: -15px;
+  top: 90%;
+  z-index: 1;
+}
+
+.carLower {
+  width: 93%;
+  height: 25%;
+  background: silver;
+  box-shadow: inset 0 0 20px orange, inset 0 0 100px lightblue,
+    8px 50px 30px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15%;
+  transform: perspective(100px) rotateX(20deg);
+  border-radius: 0 0 5px 5px;
+  border-top: 4px solid darkgrey;
+}
+
+.spoiler {
+  position: absolute;
+  width: 75%;
+  height: 10px;
+  background: darkgrey;
+  top: 55%;
+  z-index: 5;
+  transform: perspective(50px) rotateX(30deg);
+  box-shadow: 0 2px 4px black, inset 0 -5px 10px -7px hotpink;
+}
+.spoiler2 {
+  position: absolute;
+  width: 67%;
+  height: 10px;
+  background: darkgrey;
+  top: 50%;
+  z-index: 5;
+  transform: perspective(50px) rotateX(30deg);
+  box-shadow: 0 2px 4px black, inset 0 -5px 10px -7px hotpink;
+}
+.spoiler3 {
+  position: absolute;
+  width: 59%;
+  height: 10px;
+  background: darkgrey;
+  top: 45%;
+  z-index: 5;
+  transform: perspective(50px) rotateX(30deg);
+  box-shadow: 0 2px 4px black, inset 0 -5px 10px -7px hotpink;
+}
+
+.carLowerInner {
+  width: 100%;
+  height: 10%;
+  background: linear-gradient(90deg, rgba(74, 22, 0, 0.72), brown);
+  transform: perspective(100px) rotateX(-20deg);
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0 10px 0px rgba(50, 0, 0, 1), 0 10px 50px black;
+  border-top: 4px solid rgba(74, 22, 0, 0.72);
+}
+
+.lights {
+  width: 40px;
+  height: 20px;
+  background: orange;
+  transform: perspective(50px) rotateX(10deg);
+  background-size: 10px 10px;
+  background-image: linear-gradient(to right, darkorange 1px, transparent 1px),
+    linear-gradient(to bottom, darkorange 1px, transparent 1px);
+  margin-top: 10px;
+}
+
+.lightL {
+  box-shadow: 0 0 10px orange, inset 0 0 5px gold, inset 5px 0 15px white,
+    0 0 20px hotpink;
+  border-radius: 5px 0 0 0;
+}
+
+.lightR {
+  box-shadow: 0 0 10px orange, inset 0 0 5px gold, inset -5px 0 15px white,
+    0 0 20px hotpink;
+  border-radius: 0 5px 0 0;
+}
+
+.license {
+  width: 40px;
+  height: 15px;
+  background: yellow;
+  overflow: hidden;
+  align-self: flex-end;
+  border: 2px solid black;
+  font-size: 0.6rem;
+  padding: 1px;
+  text-align: center;
+  margin-bottom: 10px;
+  box-shadow: inset 0 0 5px black, 0 0 2px black;
+  font-family: arial;
+}
+
+.wheels {
+  height: 20px;
+  width: 90%;
+  border-right: 40px solid black;
+  border-left: 40px solid black;
+  border-radius: 5px;
+}
+
+/* ---------------------------------------------------------- TREES ---------------------------------------------------------- */
+
+.palmL {
+  position: absolute;
+  left: 300px;
+  top: -220px;
+  height: 400px;
+  width: 400px;
+  z-index: 5;
+  -webkit-filter: drop-shadow(1px 1px 10px cyan)
+    drop-shadow(-1px -1px 10px cyan) drop-shadow(20px 20px 10px blue)
+    drop-shadow(-20px -20px 10px blue);
+  filter: drop-shadow(1px 1px 0 cyan) drop-shadow(-1px -1px 0 cyan)
+    drop-shadow(2px 2px 10px cyan) drop-shadow(-2px -2px 10px cyan);
+  animation: treeSlideL 5s linear infinite;
+  opacity: 0;
+}
+
+.palmR {
+  position: absolute;
+  right: 300px;
+  top: -220px;
+  height: 400px;
+  width: 400px;
+  z-index: 5;
+  -webkit-filter: drop-shadow(1px 1px 10px cyan)
+    drop-shadow(-1px -1px 10px cyan) drop-shadow(20px 20px 10px white)
+    drop-shadow(-20px -20px 10px white);
+  filter: drop-shadow(1px 1px 0 cyan) drop-shadow(-1px -1px 0 cyan)
+    drop-shadow(2px 2px 10px cyan) drop-shadow(-2px -2px 10px cyan);
+  animation: treeSlideR 5s linear infinite;
+  animation-delay: 2.5s;
+  opacity: 0;
+}
+
+.palmL.tree3 {
+  rotate: 20deg;
+  top: -270px;
+}
+
+.palmR.tree3 {
+  rotate: -20deg;
+  top: -270px;
+}
+
+/* ---------------------------------------------------------- VIDEO PLAYER ---------------------------------------------------------- */
+
+iframe {
+  position: absolute;
+  opacity: 1;
+  height: 400px;
+  width: 200px;
+  left: 200px;
+  top: 200px;
+  z-index: 5;
+  box-shadow: 0 0 20px blue;
+  transform: perspective(100px) rotateX(10deg) rotateY(5deg);
+}
+
+/* ---------------------------------------------------------- ANIMATIONS ---------------------------------------------------------- */
+
+@keyframes slide {
+  0% {
+    transform: translateY(0vh);
+  }
+  50% {
+    transform: translateY(5vh);
+  }
+
+  100% {
+    transform: translateY(50vh);
+  }
+}
+
+@keyframes dashSlide {
+  0% {
+    transform: translateY(0vh) scaleY(0.1) scaleX(0.1) perspective(20px)
+      rotateX(10deg);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(5vh) scaleY(1.1) perspective(20px) rotateX(10eg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(60vh) scaleY(3) perspective(20px) rotateX(10deg);
+    opacity: 1;
+  }
+}
+
+@keyframes bob {
+  0% {
+    transform: translateY(33px) translateX(11px);
+  }
+  25% {
+    transform: translateY(44px) translateX(16px);
+  }
+
+  50% {
+    transform: translateY(11px);
+  }
+  75% {
+    transform: translateY(11px);
+  }
+  100% {
+    transform: translateY(33px) translateX(11px);
+  }
+}
+
+@keyframes treeSlideL {
+  0% {
+    transform: translateY(0vh) translateX(150px) scale(0.1) scaleX(-1);
+    opacity: 1;
+  }
+
+  30% {
+    transform: translateY(154px) translateX(-120px) scale(1.1) scaleX(-1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(1080px) translateX(-1000px) scale(3) scaleX(-1);
+    opacity: 1;
+  }
+}
+
+@keyframes treeSlideR {
+  0% {
+    transform: translateY(0vh) translateX(-150px) scale(0.1);
+    opacity: 1;
+  }
+
+  30% {
+    transform: translateY(154px) translateX(120px) scale(1.1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(1080px) translateX(1000px) scale(3);
+    opacity: 1;
+  }
+}
+
+@keyframes birds {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(1920px);
+  }
+}
+
+@keyframes flaps {
+  0% {
+    scale: 2 -1;
+  }
+  50% {
+    scale: 2 1;
+  }
+  100% {
+    scale: 2 -1;
+  }
+}
