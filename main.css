@@ -78,6 +78,50 @@ h2 {
   animation: birds 30s linear infinite, flaps 1s linear infinite;
 }
 
+.infoHoverPoint {
+  font-family: "Bungee Hairline", sans-serif;
+  width: 2vw;
+  height: 2vw;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: white;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 6;
+  color: black;
+}
+
+.i {
+  position: absolute;
+}
+
+.about {
+  opacity: 0;
+}
+
+.infoHoverPoint:hover > .about {
+  opacity: 1;
+  color: white;
+  text-wrap: wrap;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 300px;
+  padding: 50px;
+  background: rgba(0, 0, 0, 0.829);
+  box-shadow: 0 0 100px cyan;
+  border-left: 2px solid cyan;
+  border-bottom: 2px solid cyan;
+  transition: opacity 1s ease;
+}
+
+.portfolio {
+  color: white;
+}
+
 /* ---------------------------------------------------------- BACKGROUND LOWER ---------------------------------------------------------- */
 
 .grid {
